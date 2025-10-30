@@ -37,6 +37,8 @@ public class Main {
                 case 6 -> promptViewTransactions();
                 case 7 -> promptInterest();
                 case 0 -> {
+                    Tools.printToConsole("💾 Saving data...");
+                    bank.saveData();
                     Tools.printToConsole("👋 Goodbye!");
                     return;
                 }

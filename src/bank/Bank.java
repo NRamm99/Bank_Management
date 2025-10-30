@@ -1,5 +1,6 @@
 package bank;
 
+import utils.FileHandler;
 import utils.Tools;
 
 import java.util.ArrayList;
@@ -9,7 +10,11 @@ public class Bank {
     private int nextAccountId = 1001;
 
     public Bank() {
-        this.accounts = new ArrayList<>();
+        accounts = FileHandler.loadAccounts();
+    }
+
+    public void saveData(){
+        FileHandler.saveAccounts(accounts);
     }
 
     public void createAccount(String name, double initialDeposit) {
@@ -21,6 +26,7 @@ public class Bank {
         Account newAccount = new Account(nextAccountId++, name, initialDeposit);
         accounts.add(newAccount);
         Tools.printToConsole("🏦 Account created successfully! ID: " + (nextAccountId - 1));
+        saveData();
     }
 
     public ArrayList<Account> getAccounts() {

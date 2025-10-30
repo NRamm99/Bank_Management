@@ -41,18 +41,22 @@ public class Tools {
         while (true) {
             System.out.print(message + ": ");
             String userStr = input.nextLine().trim();
-
             try {
-                int value = Integer.parseInt(userStr);
-
-                if (value < 0) {
-                    System.out.println(RED + "❌ Number cannot be negative. Try again." + RESET);
-                    continue;
-                }
-
-                return value;
+                return Integer.parseInt(userStr);
             } catch (NumberFormatException e) {
                 System.out.println(RED + "❌ Invalid input. Please enter a whole number." + RESET);
+            }
+        }
+    }
+
+    public static String validateName(Scanner input, String message) {
+        while (true) {
+            System.out.print(message + ": ");
+            String name = input.nextLine();
+            if (name.matches("^[A-Za-zÆØÅæøå\\s]+$")) {
+                return name;
+            } else {
+                Tools.printToConsole("❌ Invalid name – only letters and spaces allowed.");
             }
         }
     }
@@ -63,14 +67,7 @@ public class Tools {
             String userStr = input.nextLine().trim().replace(',', '.');
 
             try {
-                double value = Double.parseDouble(userStr);
-
-                if (value < 0) {
-                    System.out.println(RED + "❌ Number cannot be negative. Try again." + RESET);
-                    continue;
-                }
-
-                return value;
+                return Double.parseDouble(userStr);
             } catch (NumberFormatException e) {
                 System.out.println(RED + "❌ Invalid number. Please enter a valid decimal value." + RESET);
             }

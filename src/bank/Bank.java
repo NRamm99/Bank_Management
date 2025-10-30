@@ -11,10 +11,19 @@ public class Bank {
 
     public Bank() {
         accounts = FileHandler.loadAccounts();
+
+        var transactionMap = FileHandler.loadTransactions();
+        for (Account acc : accounts) {
+            ArrayList<String> history = transactionMap.get(acc.getAccountId());
+            if (history != null) {
+                acc.setTransactions(history);
+            }
+        }
     }
 
-    public void saveData(){
+    public void saveData() {
         FileHandler.saveAccounts(accounts);
+        FileHandler.saveTransactions(accounts);
     }
 
     public void createAccount(String name, double initialDeposit) {

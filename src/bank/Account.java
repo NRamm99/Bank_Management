@@ -74,6 +74,14 @@ public class Account {
         transactions.add(entry);
     }
 
+    public ArrayList<String> getTransactions(){
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<String> transactions){
+        this.transactions = transactions;
+    }
+
     @Override
     public String toString() {
         return String.format("ID: %-5d | Name: %-20s | Balance: $%.2f",
